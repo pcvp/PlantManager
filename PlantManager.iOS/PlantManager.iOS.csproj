@@ -113,6 +113,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ImageSet.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ImageSet.imageset\Logo%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ImageSet.imageset\Logo%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ImageSet.imageset\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -132,5 +136,8 @@
       <Project>{AD9A96D3-F1CC-4691-8A08-2505EF5A0954}</Project>
       <Name>PlantManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\ImageSet.imageset\" />
   </ItemGroup>
 </Project>
