@@ -1,8 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlantManager.App">
+             x:Class="PlantManager.App"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
     <Application.Resources>
+        <Color x:Key="HeadingColor">#52665A</Color>
+        <Color x:Key="BodyColor">#5C6660</Color>
+        <Color x:Key="WhiteColor">#FFF</Color>
+        <Color x:Key="GreenColor">#32B768</Color>
+
+
+      <Thickness x:Key="AppMargin">25</Thickness>
+
+        <Style TargetType="Label" x:Key="Heading32">
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontFamily" Value="JostSemiBold" />
+            <Setter Property="TextColor" Value="{StaticResource HeadingColor}"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="Heading24">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontFamily" Value="JostSemiBold" />            
+            <Setter Property="TextColor" Value="{StaticResource BodyColor}"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="Text17">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontFamily" Value="Jost" />
+        </Style>
+
+        <Style TargetType="ImageButton" x:Key="ImageButton">
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="BackgroundColor" Value="{StaticResource GreenColor}"/>
+        </Style>
 
     </Application.Resources>
 </Application>

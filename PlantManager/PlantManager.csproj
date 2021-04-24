@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -18,5 +20,26 @@
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Controls\" />
+    <Folder Include="Assets\Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\BoasVindasPage.xaml.cs">
+      <DependentUpon>BoasVindasPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Images\ilustra.png" />
+    <None Remove="Assets\Icons\Arrow.png" />
+    <None Remove="Assets\Fonts\Jost.ttf" />
+    <None Remove="Assets\Fonts\JostExtraBold.ttf" />
+    <None Remove="Assets\Fonts\JostSemiBold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\ilustra.png" />
+    <EmbeddedResource Include="Assets\Icons\Arrow.png" />
+    <EmbeddedResource Include="Assets\Fonts\Jost.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\JostExtraBold.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\JostSemiBold.ttf" />
   </ItemGroup>
 </Project>

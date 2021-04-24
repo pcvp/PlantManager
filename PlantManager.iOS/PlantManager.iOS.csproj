@@ -140,4 +140,7 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\ImageSet.imageset\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Arrow.png" />
+  </ItemGroup>
 </Project>

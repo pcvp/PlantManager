@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PlantManager.Views.BoasVindasPage">
+    <ContentPage.Content>
+        <StackLayout Margin="{StaticResource AppMargin}">
+            <Label
+                Text="Gerencie suas plantas de forma fácil"
+                Style="{StaticResource Heading32}"
+                VerticalOptions="Start"
+                Margin="20"/>
+
+            <ff:CachedImage
+                Source="resource://PlantManager.Assets.Images.ilustra.png"
+                DownsampleToViewSize="True"
+                VerticalOptions="FillAndExpand"
+                DownsampleHeight="300" />
+
+            <Label
+                Text="Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar."
+                Style="{StaticResource Text17}"
+                VerticalOptions="End"
+                HorizontalTextAlignment="Center"
+                Margin="25"/>
+
+            <ImageButton
+                Source="Arrow.png"
+                Style="{StaticResource ImageButton}"
+                HorizontalOptions="Center"
+                HeightRequest="56"
+                WidthRequest="56"
+                Margin="15" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>  

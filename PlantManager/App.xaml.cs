@@ -1,4 +1,5 @@
 ﻿using System;
+using PlantManager.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace PlantManager
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new BoasVindasPage();
         }
 
         protected override void OnStart()
