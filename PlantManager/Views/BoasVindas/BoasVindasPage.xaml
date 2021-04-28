@@ -2,14 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="PlantManager.Views.BoasVindasPage">
+             xmlns:vm="clr-namespace:PlantManager.ViewModels.BoasVindas"
+             x:Class="PlantManager.Views.BoasVindas.BoasVindasPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:BoasVindasViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Margin="{StaticResource AppMargin}">
+        <FlexLayout
+            Direction="Column"
+            JustifyContent="SpaceAround"
+            AlignItems="Center"
+            Margin="{StaticResource AppMargin}">
             <Label
                 Text="Gerencie suas plantas de forma fácil"
                 Style="{StaticResource Heading32}"
-                VerticalOptions="Start"
-                Margin="20"/>
+                VerticalOptions="Start"/>
 
             <ff:CachedImage
                 Source="resource://PlantManager.Assets.Images.ilustra.png"
@@ -21,17 +29,16 @@
                 Text="Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar."
                 Style="{StaticResource Text17}"
                 VerticalOptions="End"
-                HorizontalTextAlignment="Center"
-                Margin="25"/>
+                HorizontalTextAlignment="Center"/>
 
             <ImageButton
                 Source="Arrow.png"
                 Style="{StaticResource ImageButton}"
+                Command="{Binding IrParaAIdentificaoDoUsuarioCommand}"
                 HorizontalOptions="Center"
                 HeightRequest="56"
-                WidthRequest="56"
-                Margin="15" />
+                WidthRequest="56" />
 
-        </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>  

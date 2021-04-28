@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:PlantManager.ViewModels.IdentificacaoDoUsuario"
+    xmlns:converters="clr-namespace:PlantManager.Converters"
+    x:Class="PlantManager.Views.IdentificacaoDoUsario.IdentificacaoDoUsuarioPage"
+    NavigationPage.HasNavigationBar="False"
+                 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+    <ContentPage.BindingContext>
+        <vm:IdentificacaoDoUsuarioViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="40" Margin="{StaticResource AppMargin}">
+            <Image Source="{Binding Emoji}" Margin="0,130,0,0"/>
+
+            <Label
+                Text="Como podemos chamar você?"
+                Style="{StaticResource Heading24}"/>
+
+            <Entry                
+                Text="{Binding Nome}"
+                Style="{StaticResource Entry}"
+                Placeholder="Digite um nome"/>
+
+
+            <Button
+                Visual="Button"
+                Text="Confirmar"
+                Command="{Binding SalvarNomeDoUsuarioCommand}"
+                Style="{StaticResource Button}"
+                IsEnabled="{Binding Nome, Converter={converters:IsNullOrEmptyConverter Invert=True}}">
+                 
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

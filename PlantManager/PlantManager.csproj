@@ -11,22 +11,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
+    <PackageReference Include="Fody" Version="6.5.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Controls\" />
     <Folder Include="Assets\Icons\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\BoasVindasPage.xaml.cs">
-      <DependentUpon>BoasVindasPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Folder Include="Views\BoasVindas\" />
+    <Folder Include="Views\IdentificacaoDoUsario\" />
+    <Folder Include="ViewModels\BoasVindas\" />
+    <Folder Include="ViewModels\IdentificacaoDoUsuario\" />
+    <Folder Include="Converters\" />
+    <Folder Include="ViewModels\Shared\" />
+    <Folder Include="Properties\" />
+    <Folder Include="ViewModels\Home\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Images\ilustra.png" />
@@ -41,5 +50,17 @@
     <EmbeddedResource Include="Assets\Fonts\Jost.ttf" />
     <EmbeddedResource Include="Assets\Fonts\JostExtraBold.ttf" />
     <EmbeddedResource Include="Assets\Fonts\JostSemiBold.ttf" />
+    <EmbeddedResource Remove="Properties\KeysResources.pt-br.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\KeysResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>KeysResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\KeysResources.Designer.cs">
+      <DependentUpon>KeysResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

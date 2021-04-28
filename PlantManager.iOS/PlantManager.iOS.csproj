@@ -142,5 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Arrow.png" />
+    <BundleResource Include="Resources\Emoji1.png" />
+    <BundleResource Include="Resources\Emoji2.png" />
+    <BundleResource Include="Resources\Emoji3.png" />
   </ItemGroup>
 </Project>
