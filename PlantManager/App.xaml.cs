@@ -1,4 +1,6 @@
-﻿using PlantManager.Views.BoasVindas;
+﻿using PlantManager.Helpers;
+using PlantManager.Views.BoasVindas;
+using PlantManager.Views.Home;
 using Xamarin.Forms;
 
 
@@ -10,7 +12,10 @@ namespace PlantManager
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new BoasVindasPage());
+            if(string.IsNullOrEmpty(UsuarioHelper.GetNomeDoUsuario()))
+                MainPage = new NavigationPage(new BoasVindasPage());
+            else
+                MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

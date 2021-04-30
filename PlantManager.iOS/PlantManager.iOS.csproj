@@ -145,5 +145,6 @@
     <BundleResource Include="Resources\Emoji1.png" />
     <BundleResource Include="Resources\Emoji2.png" />
     <BundleResource Include="Resources\Emoji3.png" />
+    <BundleResource Include="Resources\Waterdrop.png" />
   </ItemGroup>
 </Project>

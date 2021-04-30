@@ -1,12 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:PlantManager.ViewModels.Home"
-    x:Class="PlantManager.Views.Home.HomePage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:PlantManager.ViewModels.Home"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="PlantManager.Views.Home.HomePage"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Label Text="{Binding Nome}" Style="{StaticResource Heading24}" />
+        <FlexLayout AlignContent="SpaceBetween" JustifyContent="SpaceBetween" Direction="Row" Margin="{StaticResource AppMargin}">
+            <StackLayout Spacing="0">
+                <Label Text="Olá, " Style="{StaticResource Heading32Normal}" />
+                <Label Text="{Binding Nome}" Style="{StaticResource Heading32}" />
+            </StackLayout>
+            
+            <ff:CachedImage                
+                WidthRequest="80"
+                HeightRequest="80"
+                Aspect="Fill"
+                Source = "{Binding ImagemDeUsuario}"
+                LoadingPlaceholder = "{Binding ImagemDeUsuarioPadrao}"
+                ErrorPlaceholder = "{Binding ImagemDeUsuarioPadrao}">
+                <ff:CachedImage.Transformations>
+                    <fft:CircleTransformation />
+                </ff:CachedImage.Transformations>
+                <ff:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AlterarFotoCommand}" />
+                </ff:CachedImage.GestureRecognizers>
+            </ff:CachedImage>
+        </FlexLayout>
+        
     </ContentPage.Content>
 </ContentPage>

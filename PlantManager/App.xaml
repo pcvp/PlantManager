@@ -20,6 +20,13 @@
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
+         <Style TargetType="Label" x:Key="Heading32Normal">
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontFamily" Value="Jost" />
+            <Setter Property="TextColor" Value="{StaticResource HeadingColor}"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
         <Style TargetType="Label" x:Key="Heading24">
             <Setter Property="FontSize" Value="24" />
             <Setter Property="FontFamily" Value="JostSemiBold" />            
