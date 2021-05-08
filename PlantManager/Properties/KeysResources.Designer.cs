@@ -50,5 +50,17 @@ namespace PlantManager.Properties {
                 return ResourceManager.GetString("NomeDoUsuarioKey", resourceCulture);
             }
         }
+        
+        internal static string ImagemPadraoDoUsuarioKey {
+            get {
+                return ResourceManager.GetString("ImagemPadraoDoUsuarioKey", resourceCulture);
+            }
+        }
+        
+        internal static string ImagemPersonalizadaDoUsuarioKey {
+            get {
+                return ResourceManager.GetString("ImagemPersonalizadaDoUsuarioKey", resourceCulture);
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@
             <Button
                 Visual="Button"
                 Text="Confirmar"
-                Command="{Binding SalvarNomeDoUsuarioCommand}"
+                Command="{Binding SalvarUsuarioCommand}"
                 Style="{StaticResource Button}"
                 IsEnabled="{Binding Nome, Converter={converters:IsNullOrEmptyConverter Invert=True}}">
                  

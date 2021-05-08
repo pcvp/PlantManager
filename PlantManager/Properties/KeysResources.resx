@@ -15,4 +15,10 @@
 	<data name="NomeDoUsuarioKey" xml:space="preserve">
 		<value>nomeDoUsuarioKey</value>
 	</data>
+	<data name="ImagemPadraoDoUsuarioKey" xml:space="preserve">
+		<value>imagemPadraoDoUsuarioKey</value>
+	</data>
+	<data name="ImagemPersonalizadaDoUsuarioKey" xml:space="preserve">
+		<value>imagemPersonalizaDoUsuarioKey</value>
+	</data>
 </root>

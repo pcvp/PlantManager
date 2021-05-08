@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using PlantManager.Helpers;
 using PlantManager.ViewModels.Shared;
@@ -12,13 +13,16 @@ namespace PlantManager.ViewModels.Home
     {
         public HomeViewModel()
         {
+            var imagemDoUsuarioPersonalizada = UsuarioHelper.GetImagemDoUsuarioMediaFile();
+            if (imagemDoUsuarioPersonalizada == null)
+                ImagemDoUsuario = UsuarioHelper.GetImagemDoUsuario();
+            else
+                ImagemDoUsuario = GetImageSourceFromMediaFile(imagemDoUsuarioPersonalizada);
         }
 
         public string Nome => UsuarioHelper.GetNomeDoUsuario();
 
-        public string ImagemDeUsuarioPadrao => "waterdrop.png";
-
-        public ImageSource ImagemDeUsuario { get; set; }
+        public ImageSource ImagemDoUsuario { get; set; } 
 
         public Command AlterarFotoCommand => new Command(async () =>
         {
@@ -28,15 +32,16 @@ namespace PlantManager.ViewModels.Home
             switch (action)
             {
                 case "Selecionar foto":
-                    SelecionarFotoAsync();
+                    await SelecionarFotoAsync();
                     break;
 
                 case "Abrir camera":
 
-                    AbrirCameraAsync();
+                    await AbrirCameraAsync();
                     break;           
 
             }
+
         });
 
         private async Task AbrirCameraAsync()
@@ -56,12 +61,11 @@ namespace PlantManager.ViewModels.Home
 
             if (foto == null)
                 return;
-            ImagemDeUsuario = ImageSource.FromStream(() =>
-            {
-                var stream = foto.GetStream();
-                foto.Dispose();
-                return stream;
-            });
+
+            UsuarioHelper.SetImagemDoUsuario(foto);
+
+            ImagemDoUsuario = GetImageSourceFromMediaFile(foto);
+            
         }
 
         private async Task SelecionarFotoAsync()
@@ -71,14 +75,20 @@ namespace PlantManager.ViewModels.Home
                 var imagem = await CrossMedia.Current.PickPhotoAsync();
                 if (imagem != null)
                 {
-                    ImagemDeUsuario = ImageSource.FromStream(() =>
-                    {
-                        var stream = imagem.GetStream();
-                        imagem.Dispose();
-                        return stream;
-                    });
+                    ImagemDoUsuario = GetImageSourceFromMediaFile(imagem);
+                    UsuarioHelper.SetImagemDoUsuario(imagem);
                 }
             }
+        }
+
+        private ImageSource GetImageSourceFromMediaFile(MediaFile mediaFile)
+        {
+            return ImageSource.FromStream(() =>
+            {
+                var stream = mediaFile.GetStream();
+                mediaFile.Dispose();
+                return stream;
+            });
         }
     }
 }

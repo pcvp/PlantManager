@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace PlantManager.Helpers
@@ -13,7 +14,8 @@ namespace PlantManager.Helpers
             try {
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(valor);
             }
-            catch {
+            catch (Exception ex){
+                Console.WriteLine(ex.Message);
                 return default;
             }
         }

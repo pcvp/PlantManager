@@ -21,9 +21,10 @@ namespace PlantManager.ViewModels.IdentificacaoDoUsuario
 
         public string Nome { get; set; }
         
-        public Command SalvarNomeDoUsuarioCommand => new Command(() =>
+        public Command SalvarUsuarioCommand => new Command(async () =>
         {
             UsuarioHelper.SetNomeDoUsuario(Nome);
+            UsuarioHelper.SetImagemDoUsuario("Waterdrop.png");
             IrParaHome();
         });
 

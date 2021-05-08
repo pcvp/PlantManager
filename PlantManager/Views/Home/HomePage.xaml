@@ -21,9 +21,9 @@
                 WidthRequest="80"
                 HeightRequest="80"
                 Aspect="Fill"
-                Source = "{Binding ImagemDeUsuario}"
-                LoadingPlaceholder = "{Binding ImagemDeUsuarioPadrao}"
-                ErrorPlaceholder = "{Binding ImagemDeUsuarioPadrao}">
+                Source = "{Binding ImagemDoUsuario}"
+                LoadingPlaceholder = "{Binding ImagemDeUsuario}"
+                ErrorPlaceholder = "{Binding ImagemDeUsuario}">
                 <ff:CachedImage.Transformations>
                     <fft:CircleTransformation />
                 </ff:CachedImage.Transformations>

@@ -12,8 +12,10 @@ namespace PlantManager
         {
             InitializeComponent();
 
-            if(string.IsNullOrEmpty(UsuarioHelper.GetNomeDoUsuario()))
+            if (string.IsNullOrEmpty(UsuarioHelper.GetNomeDoUsuario()))
+            {
                 MainPage = new NavigationPage(new BoasVindasPage());
+            }
             else
                 MainPage = new NavigationPage(new HomePage());
         }
