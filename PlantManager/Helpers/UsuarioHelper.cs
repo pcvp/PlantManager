@@ -1,7 +1,4 @@
 using PlantManager.Properties;
-using Plugin.Media.Abstractions;
-using System;
-using System.IO;
 using Xamarin.Forms;
 
 namespace PlantManager.Helpers
@@ -19,8 +16,8 @@ namespace PlantManager.Helpers
 
 
 
-        public static void SetImagemDoUsuario(MediaFile valor) => LocalDataStoreHelper.SetAsync(KeysResources.ImagemPersonalizadaDoUsuarioKey, valor).Wait();
+        public static void SetImagemPersonalizadaDoUsuario(string valor) => LocalDataStoreHelper.SetAsync(KeysResources.ImagemPersonalizadaDoUsuarioKey, valor).Wait();
      
-        public static MediaFile GetImagemDoUsuarioMediaFile() => LocalDataStoreHelper.GetAsync<MediaFile>(KeysResources.ImagemPersonalizadaDoUsuarioKey).Result;
+        public static string GetImagemDoUsuarioPersonalizada() => LocalDataStoreHelper.GetAsync<string>(KeysResources.ImagemPersonalizadaDoUsuarioKey).Result;
     }
 }

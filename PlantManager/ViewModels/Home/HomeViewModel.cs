@@ -3,92 +3,95 @@ using System.IO;
 using System.Threading.Tasks;
 using PlantManager.Helpers;
 using PlantManager.ViewModels.Shared;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PlantManager.ViewModels.Home
 {
-    public class HomeViewModel: BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
         public HomeViewModel()
         {
-            var imagemDoUsuarioPersonalizada = UsuarioHelper.GetImagemDoUsuarioMediaFile();
+            var imagemDoUsuarioPersonalizada = UsuarioHelper.GetImagemDoUsuarioPersonalizada();
             if (imagemDoUsuarioPersonalizada == null)
                 ImagemDoUsuario = UsuarioHelper.GetImagemDoUsuario();
             else
-                ImagemDoUsuario = GetImageSourceFromMediaFile(imagemDoUsuarioPersonalizada);
+                ImagemDoUsuario = imagemDoUsuarioPersonalizada;
         }
 
         public string Nome => UsuarioHelper.GetNomeDoUsuario();
 
-        public ImageSource ImagemDoUsuario { get; set; } 
+        public ImageSource ImagemDoUsuario { get; set; }
 
         public Command AlterarFotoCommand => new Command(async () =>
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Alterar foto do usuário", "Cancelar", null, "Selecionar foto", "Abrir camera");
-
+            string path = string.Empty;
 
             switch (action)
             {
                 case "Selecionar foto":
-                    await SelecionarFotoAsync();
+                    path = await SelecionarFotoAsync();
                     break;
 
                 case "Abrir camera":
+                    path = await TirarFotoAsync();
+                    break;
 
-                    await AbrirCameraAsync();
-                    break;           
+            }
 
+            if (!string.IsNullOrEmpty(path))
+            {
+                ImagemDoUsuario = path;
+                UsuarioHelper.SetImagemPersonalizadaDoUsuario(path);
             }
 
         });
 
-        private async Task AbrirCameraAsync()
+
+
+        public async Task<string> SelecionarFotoAsync()
         {
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            try
             {
-                await Application.Current.MainPage.DisplayAlert("Nenhuma Câmera", ":( Nenuma Câmera disponível.", "OK");
-                return;
+                var photo = await MediaPicker.PickPhotoAsync();
+                return await LoadPhotoAsync(photo);
             }
-
-            var armazenamento = new StoreCameraMediaOptions()
+            catch (Exception ex)
             {
-                SaveToAlbum = true,
-                Name = "MinhaFoto.jpg"
-            };
-            var foto = await CrossMedia.Current.TakePhotoAsync(armazenamento);
-
-            if (foto == null)
-                return;
-
-            UsuarioHelper.SetImagemDoUsuario(foto);
-
-            ImagemDoUsuario = GetImageSourceFromMediaFile(foto);
-            
-        }
-
-        private async Task SelecionarFotoAsync()
-        {
-            if (CrossMedia.Current.IsTakePhotoSupported)
-            {
-                var imagem = await CrossMedia.Current.PickPhotoAsync();
-                if (imagem != null)
-                {
-                    ImagemDoUsuario = GetImageSourceFromMediaFile(imagem);
-                    UsuarioHelper.SetImagemDoUsuario(imagem);
-                }
+                Console.WriteLine($"SelecionarFotoAsync THREW: {ex.Message}");
+                return null;
             }
         }
 
-        private ImageSource GetImageSourceFromMediaFile(MediaFile mediaFile)
+        public async Task<string> TirarFotoAsync()
         {
-            return ImageSource.FromStream(() =>
+            try
             {
-                var stream = mediaFile.GetStream();
-                mediaFile.Dispose();
-                return stream;
-            });
+                var photo = await MediaPicker.CapturePhotoAsync();
+                return await LoadPhotoAsync(photo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"TirarFotoAsync THREW: {ex.Message}");
+                return null;
+            }
+        }
+
+        async Task<string> LoadPhotoAsync(FileResult photo)
+        {
+            // canceled
+            if (photo == null)
+            {
+                return null;
+            }
+            // save the file into local storage
+            var newFile = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
+            using (var stream = await photo.OpenReadAsync())
+            using (var newStream = File.OpenWrite(newFile))
+                await stream.CopyToAsync(newStream);
+
+            return newFile;
         }
     }
 }
