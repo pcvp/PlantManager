@@ -6,32 +6,57 @@
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Class="PlantManager.Views.Home.HomePage"
+    BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <FlexLayout AlignContent="SpaceBetween" JustifyContent="SpaceBetween" Direction="Row" Margin="{StaticResource AppMargin}">
-            <StackLayout Spacing="0">
-                <Label Text="Olá, " Style="{StaticResource Heading32Normal}" />
-                <Label Text="{Binding Nome}" Style="{StaticResource Heading32}" />
-            </StackLayout>
-            
-            <ff:CachedImage                
+        <Grid Margin="{StaticResource AppMargin}" RowDefinitions="70, Auto, 70, *">
+            <FlexLayout Grid.Row="0" AlignContent="SpaceBetween" JustifyContent="SpaceBetween" Direction="Row" >
+                <StackLayout Spacing="0">
+                    <Label Text="Olá, " Style="{StaticResource Heading32Normal}" />
+                    <Label Text="{Binding Nome}" Style="{StaticResource Heading32}" />
+                </StackLayout>
+
+                <ff:CachedImage                
                 WidthRequest="80"
                 HeightRequest="80"
                 Aspect="Fill"
                 Source = "{Binding ImagemDoUsuario}"
                 LoadingPlaceholder = "{Binding ImagemDeUsuario}"
                 ErrorPlaceholder = "{Binding ImagemDeUsuario}">
-                <ff:CachedImage.Transformations>
-                    <fft:CircleTransformation />
-                </ff:CachedImage.Transformations>
-                <ff:CachedImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AlterarFotoCommand}" />
-                </ff:CachedImage.GestureRecognizers>
-            </ff:CachedImage>
-        </FlexLayout>
-        
+                    <ff:CachedImage.Transformations>
+                        <fft:CircleTransformation />
+                    </ff:CachedImage.Transformations>
+                    <ff:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AlterarFotoCommand}" />
+                    </ff:CachedImage.GestureRecognizers>
+                </ff:CachedImage>
+            </FlexLayout>
+
+
+            <StackLayout Grid.Row="1" Margin="0,30,0,0" Spacing="0">
+                <Label Text="Em qual ambiente" Style="{StaticResource Text17SemiBold}"/>
+                <Label Text="você quer colocar sua planta?" Style="{StaticResource Text17}"/>
+            </StackLayout>
+
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Ambientes}">                                
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Button
+                                   Text="{Binding Nome}" 
+                                   Visual="Button"
+                                   Style="{StaticResource ListButton}"
+                                   IsEnabled="True"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

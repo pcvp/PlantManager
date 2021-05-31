@@ -9,6 +9,9 @@
         <Color x:Key="BodyColor">#5C6660</Color>
         <Color x:Key="WhiteColor">#FFF</Color>
         <Color x:Key="GreenColor">#32B768</Color>
+        <Color x:Key="GreenLightColor">#DAF2E4</Color>
+        <Color x:Key="GreenDarkColor">#2B7A4B</Color>
+        <Color x:Key="GreyColor">#F5FAF7</Color>
 
 
       <Thickness x:Key="AppMargin">25</Thickness>
@@ -39,6 +42,11 @@
             <Setter Property="FontFamily" Value="Jost" />
         </Style>
 
+        <Style TargetType="Label" x:Key="Text17SemiBold">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontFamily" Value="JostSemiBold" />
+        </Style>
+
         <Style TargetType="ImageButton" x:Key="ImageButton">
             <Setter Property="CornerRadius" Value="15" />
             <Setter Property="BackgroundColor" Value="{StaticResource GreenColor}"/>
@@ -51,26 +59,21 @@
             <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />            
         </Style>
 
-        <Style TargetType="Button">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Opacity" Value="1" />
-                                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Disabled">
-                            <VisualState.Setters>
-                                <Setter Property="Opacity" Value=".5" />
-                                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
+        <Style TargetType="Button" x:Key="ListButton">
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="BackgroundColor" Value="{StaticResource GreyColor}"/>
+            <Setter Property="HeightRequest" Value="56" />
+            <Setter Property="TextColor" Value="{StaticResource HeadingColor}" />
         </Style>
+
+        <Style TargetType="Button" x:Key="ListButtonActive">
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="BackgroundColor" Value="{StaticResource GreenLightColor}"/>
+            <Setter Property="HeightRequest" Value="56" />
+            <Setter Property="TextColor" Value="{StaticResource GreenDarkColor}" />
+        </Style>
+
+       
 
         <Style TargetType="Entry" x:Key="Entry">                        
             <Setter Property="TextColor" Value="{StaticResource BodyColor}" />

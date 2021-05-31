@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using PlantManager.Helpers;
+using PlantManager.Mock;
+using PlantManager.Models;
 using PlantManager.ViewModels.Shared;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,6 +13,11 @@ namespace PlantManager.ViewModels.Home
 {
     public class HomeViewModel : BaseViewModel
     {
+
+        #region Bindings
+        public List<AmbienteModel> Ambientes { get; set; } = new AmbienteMock().Ambientes;
+        #endregion
+
         public HomeViewModel()
         {
             var imagemDoUsuarioPersonalizada = UsuarioHelper.GetImagemDoUsuarioPersonalizada();
